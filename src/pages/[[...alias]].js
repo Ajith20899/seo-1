@@ -4,8 +4,6 @@ import React from "react";
 function page() {
   const [alias, setAlias] = React.useState("ascas");
 
-  console.log("Entered");
-
   return <React.Fragment>{alias && <Metadata />}</React.Fragment>;
 }
 
