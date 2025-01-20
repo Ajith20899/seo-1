@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 
 function page() {
-  const [alias, setAlias] = React.useState("ascas");
+  const [alias, setAlias] = React.useState("ascasgv");
 
   return <React.Fragment>{alias && <Metadata />}</React.Fragment>;
 }
