@@ -1,30 +1,32 @@
-import Head from "next/head";
-import React from "react";
+import { dispatch, wrapper } from "@/redux/store";
+import Metadata from "@/SEO";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function page() {
-  const [alias, setAlias] = React.useState("ascas");
+  useEffect(() => {
+    console.log("useEffect");
+  }, []);
 
-  return <React.Fragment>{alias && <Metadata />}</React.Fragment>;
+  return <Metadata />
 }
 
-const Metadata = () => {
-  return (
-    <Head>
-      <title data-next-head="">SEO Next App 1</title>
-      <meta
-        name="description"
-        content="SEO by create next app"
-        data-next-head=""
-      />
-      <meta
-        property="og:image"
-        content="https://images.pexels.com/photos/7303342/pexels-photo-7303342.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;h=600&amp;lazy=load"
-        data-next-head=""
-      />
-      <meta property="og:image:width" content="1200" data-next-head="" />
-      <meta property="og:image:height" content="630" data-next-head="" />
-    </Head>
-  );
-};
+export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
+  try {
+    store.dispatch({
+      type: 'FETCH_USERS_REQUEST',
+      payload: 'Server side payload'
+    });
+  
+    return {
+      props: { users: [] }, // will be passed to the page component as props
+    };
+  } catch (error) {
+    console.error('Failed to fetch users:', error);
+    return {
+      props: { users: [] },
+    };
+  }
+});
 
 export default page;

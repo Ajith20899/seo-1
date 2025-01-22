@@ -1,8 +1,9 @@
+import { wrapper } from "@/redux/store";
 import "@/styles/globals.css";
 import Head from "next/head";
 import React from "react";
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <React.Fragment>
       <Head>
@@ -13,3 +14,5 @@ export default function App({ Component, pageProps }) {
     </React.Fragment>
   );
 }
+
+export default wrapper.withRedux(App);
