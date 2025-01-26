@@ -8,9 +8,20 @@ function page() {
     console.log("useEffect");
   }, []);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "product.name",
+    image: "product.image",
+    description: "product.description",
+  };
+
   return (
     <React.Fragment>
-      <Metadata />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* other page content */}
       <OtherPage />
     </React.Fragment>
